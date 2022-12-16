@@ -1,0 +1,38 @@
+const path = require('path');// thư viện path (bai 8)
+const express = require('express'); // tạo hằng thư viện express
+const morgan = require('morgan'); // thư viện morgan (trong bai 7)
+const exhbs = require('express-handlebars'); // thư viện handlebars (trong bai 8)
+const app = express(); // hàm express() trả về đối tượng đại diện cho ứng dụng Nodejs
+const port = 3000; // run ở cổng nào
+
+app.use(express.static(path.join(__dirname, 'public'))); // cấu hình để sử dụng static file - luôn chỉ đến public (bai 9 )
+
+// HTTP loggger
+app.use(morgan('combined')); // (trong bai 7)
+
+// Template engine
+app.engine('hbs', exhbs.engine({
+    extname: '.hbs' // đặt lại tên đuôi file mới cho ngắn (bai 8)
+})); // định nghĩa hbs (bai 8)
+app.set('view engine', 'hbs'); // set view engine = handlebars (bai 8)
+app.set('views', path.join(__dirname, 'resources/views')); // set địa chỉ cho views (bai 8)
+
+// __dirname trả về file ứng dụng đang chạy index.js (blog/src)
+
+app.get('/', (req, res) => {
+  
+  // res.send('Hello World!');
+  res.render('home');
+}) // Trả lời khi yêu cầu GET được gửi đến trang chủ
+
+app.get('/news', (req, res) => {
+  
+  res.render('news');
+
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+}) // Lắng nghe cổng port
+
+// 127.0.0.1 - localhost
