@@ -5,10 +5,18 @@ const exhbs = require('express-handlebars'); // thư viện handlebars (trong ba
 const app = express(); // hàm express() trả về đối tượng đại diện cho ứng dụng Nodejs
 const port = 3000; // run ở cổng nào
 
+const route = require('./routes');
+
 app.use(express.static(path.join(__dirname, 'public'))); // cấu hình để sử dụng static file - luôn chỉ đến public (bai 9 )
 
 // HTTP loggger
 app.use(morgan('combined')); // (trong bai 7)
+
+app.use(express.urlencoded({
+  extended: true
+})); //xử lý dạng html trước khi gửi lên (bai 15)
+
+app.use(express.json()); //xử lý dạng javascript trước khi gửi lên(bai 15)
 
 // Template engine
 app.engine('hbs', exhbs.engine({
@@ -19,20 +27,37 @@ app.set('views', path.join(__dirname, 'resources/views')); // set địa chỉ c
 
 // __dirname trả về file ứng dụng đang chạy index.js (blog/src)
 
-app.get('/', (req, res) => {
-  
-  // res.send('Hello World!');
-  res.render('home');
-}) // Trả lời khi yêu cầu GET được gửi đến trang chủ
+//Routes init
+route(app);
 
-app.get('/news', (req, res) => {
+// app.get('/', (req, res) => {
   
-  res.render('news');
+//   // res.send('Hello World!');
+//   res.render('home');
+// }); // Trả lời khi yêu cầu GET được gửi đến trang chủ
 
-})
+// app.get('/news', (req, res) => {
+  
+//   res.render('news');
+
+// });
+
+// app.get('/search', (req, res) => {
+  
+//   console.log(req.query.q); // get thì là .query
+//   res.render('search');
+
+// });
+
+// app.post('/search', (req, res) => {
+  
+//   console.log(req.body); // post thì là .body (bai 15)
+//   res.send('');
+
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
-}) // Lắng nghe cổng port
+}); // Lắng nghe cổng port
 
 // 127.0.0.1 - localhost

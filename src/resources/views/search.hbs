@@ -1,0 +1,26 @@
+<div class="mt-4">
+    <form method="POST" action="">
+    <!--method để chỉnh sửa phương thức request, action để thay để request URL, nếu ko nhập j thì mặc định là get và ăn vào chính url hiện tại đang chứa thẻ form -->
+        <div class="form-group">
+            <label for="search-input">Từ khóa</label>
+            {{!-- <input type="text" name ="fullname">
+            <input type="text" name ="age"> --}}
+            <input type="text" name="q" class="form-control" id="search-input" placeholder="Nhập từ khóa...">
+            <!--text - kiểu dữ liệu nhập vào là văn bản -->
+        </div>
+
+        <div class="form-group">
+            <label for="gender-input">Từ khóa</label>
+            <select name="gender" name="q" class="form-control" id="gender-input">
+                <option value="">-- Chọn giới tính --</option>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        <!--khi bấm nút button thực hiện hành vi submit, đính tất cả các thẻ input có name trong form lên trên query parameter với phương thức get (bai 14)-->
+        <!--khi bấm nút button thực hiện hành vi submit, sẽ submit Form Data với phương thức post-->
+    </form>
+    
+</div>
