@@ -27,7 +27,8 @@ app.engine(
         extname: '.hbs', // đặt lại tên đuôi file mới cho ngắn (bai 8)
     }),
 ); // định nghĩa hbs (bai 8)
-app.set('view engine', 'hbs'); // set view engine = handlebars (bai 8)
+
+       app.set('view engine', 'hbs'); // set view engine = handlebars (bai 8)
 app.set('views', path.join(__dirname, 'resources/views')); // set địa chỉ cho views (bai 8)
 
 // __dirname trả về file ứng dụng đang chạy index.js (blog/src)
