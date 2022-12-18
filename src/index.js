@@ -3,10 +3,14 @@ const express = require('express'); // tạo hằng thư viện express
 const morgan = require('morgan'); // thư viện morgan (trong bai 7)
 const exhbs = require('express-handlebars'); // thư viện handlebars (trong bai 8)
 
+const route = require('./routes');
+const db = require('./config/db');
+
+//Connect to DB
+db.connect();
+
 const app = express(); // hàm express() trả về đối tượng đại diện cho ứng dụng Nodejs
 const port = 3000; // run ở cổng nào
-
-const route = require('./routes');
 
 app.use(express.static(path.join(__dirname, 'public'))); // cấu hình để sử dụng static file - luôn chỉ đến public (bai 9 )
 
@@ -63,7 +67,7 @@ route(app);
 // });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`App listening on port ${port}`);
 }); // Lắng nghe cổng port
 
 // 127.0.0.1 - localhost
