@@ -34,7 +34,7 @@ app.set('views', path.join(__dirname, 'resources/views')); // set địa chỉ c
 // __dirname trả về file ứng dụng đang chạy index.js (blog/src)
 
 //Routes init
-route(app);
+route(    app);
 
 // app.get('/', (req, res) => {
 
@@ -62,7 +62,7 @@ route(app);
 
 // });
 
-app.listen(port, () => {
+   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 }); // Lắng nghe cổng port
 
